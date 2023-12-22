@@ -20,10 +20,8 @@ abstract class AbstractManager
         $this->pdo = $connection->getConnection();
     }
 
-    /**
-     * Get all row from database.
-     */
-    public function selectAll(string $orderBy = '', string $direction = 'ASC'): array
+    // recuperation des tous les articles en BD du plus recent au plus ancien
+    public function selectAll(string $orderBy = '', string $direction = 'DESC'): array
     {
         $query = 'SELECT * FROM '. static::TABLE;
         if ($orderBy) {
@@ -33,19 +31,17 @@ abstract class AbstractManager
         return $this->pdo->query($query)->fetchAll();
     }
     
-    /**
-     * Get one row from database by ID.
-     */
+    // recup d'un seule article en BD par son "ID"
     public function selectOneById(int $id): array|false
     {
         // prepared request
         $statement = $this->pdo->prepare("SELECT * FROM " . static::TABLE . " WHERE id=:id");
-        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->bindValue(':id', $id, \PDO::PARAM_INT);
         $statement->execute();
 
-        return $statement->fetch();
+        return $statement->fetch();  
     }
-
+    
     /**
      * Delete row form an ID
      */

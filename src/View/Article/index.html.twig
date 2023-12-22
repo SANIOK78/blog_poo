@@ -1,28 +1,30 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Page d'accueil
+{% block title %}Les articles
 {% endblock %}
 
 {% block content %}
 	<main class="container">
-		<h1 class="text-center text-primary">
-			Page d'accueil !
+		<h1 class="text-center text-primary py-3">
+			Nos Articles!
 		</h1>
 
-        <div class="d-flex flex-wrap gap-2">
+        <div class="d-flex flex-wrap gap-3">
             {% for article in articles %}
                 <div class="card text-center border-primary" style="width:45%">
                     <div class="card-header">
                         <h2>{{ article.title }}</h2>
+                        <small>{{ article.created_at }}</small>
                     </div>
                     <div class="card-body">
                         <p>{{ article.content }}</p>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <p>{{ article.created_at }}</p>
+
+                        <a href="article/show?id={{ article.id }}" class="btn btn-primary py-1 px-2">
+                            Voir plus
+                        </a>
+                        
                     </div>
                 </div>
-
             {% endfor %}
         </div>
 

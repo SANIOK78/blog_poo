@@ -1,3 +1,11 @@
-body {
-    color: #f76c6c;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+h1{
+    font-family: 'Times New Roman', Times, serif!important;
+}
+/* body {
+    background-color: #f7eeee!important;
+} */

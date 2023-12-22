@@ -1,0 +1,27 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %} Article: {{ article.title }}
+{% endblock %}
+
+{% block content %}
+    <div class="p-5 m-5 shadow">
+        <h1><u>Titre : {{ article.title }}</u></h1>
+        <small>Créé le : {{ article.created_at }}</small>
+        <p>{{ article.content }}</p>
+
+        <div class="d-flex">
+            <a href="/articles" class="btn p-1 text-primary">Retour</a>
+
+            <a href="/items/edit?id={{ article.id }}" class="btn p-1 text-primary">
+                Modifier
+            </a>
+
+            <form action="/items/delete" method="POST">
+                <input type="hidden" name="id" value="{{ article.id }}">
+                <button class="btn text-primary">Delete</button>
+            </form>
+            
+        </div>
+    </div>
+
+{% endblock %}
