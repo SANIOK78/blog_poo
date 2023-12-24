@@ -6,19 +6,22 @@
 {% block content %}
     <div class="p-5 m-5 shadow">
         <h1><u>Titre : {{ article.title }}</u></h1>
-        <small>Créé le : {{ article.created_at }}</small>
+        <p><strong>Publié le : </strong>
+            {{ article.created_at|date("d-m-Y") }} à {{ article.created_at|date("H:m") }}
+        </p>
+     
         <p>{{ article.content }}</p>
 
         <div class="d-flex">
-            <a href="/articles" class="btn p-1 text-primary">Retour</a>
+            <a href="/articles" class="btn btn_p p-0 mx-1 text-primary">Retour</a>
 
-            <a href="/items/edit?id={{ article.id }}" class="btn p-1 text-primary">
+            <a href="/items/edit?id={{ article.id }}" class="btn btn_p p-0 mx-2 text-primary">
                 Modifier
             </a>
 
             <form action="/items/delete" method="POST">
                 <input type="hidden" name="id" value="{{ article.id }}">
-                <button class="btn text-primary">Delete</button>
+                <button class="btn btn_p p-0 mx-1 text-primary">Delete</button>
             </form>
             
         </div>

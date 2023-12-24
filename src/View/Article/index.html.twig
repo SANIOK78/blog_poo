@@ -6,21 +6,31 @@
 {% block content %}
 	<main class="container">
 		<h1 class="text-center text-primary py-3">
-			Nos Articles!
+			Les derniers articles!
 		</h1>
 
-        <div class="d-flex flex-wrap gap-3">
+        <div class="d-flex flex-wrap gap-3 justify-content-center">
             {% for article in articles %}
-                <div class="card text-center border-primary" style="width:45%">
-                    <div class="card-header">
-                        <h2>{{ article.title }}</h2>
-                        <small>{{ article.created_at }}</small>
+                <div class="card border-primary" style="width:45%">
+                    <div class="card-header text-center">
+                        <h2>{{ article.title }}</h2> 
+                        <div>
+                            <span class="badge border border-info text-info">
+                                {{ article.tag_name}}
+                            </span>
+                        </div>                     
                     </div>
                     <div class="card-body">
-                        <p>{{ article.content }}</p>
+                        <small> <b>Publié le : </b>{{ article.created_at|date("d-m-Y") }} 
+                            à 
+                            {{ article.created_at|date("H:m") }}
+                        </small>
+                        <p>{{ article.content|slice(0, 120) }}{{"..."}}</p>
 
-                        <a href="article/show?id={{ article.id }}" class="btn btn-primary py-1 px-2">
-                            Voir plus
+                        <a href="article/show?id={{ article.id }}" 
+                            class="btn btn-info py-1 px-2"
+                        >
+                            Lire l'article
                         </a>
                         
                     </div>

@@ -26,8 +26,7 @@ abstract class AbstractManager
         $query = 'SELECT * FROM '. static::TABLE;
         if ($orderBy) {
             $query .= ' ORDER BY ' . $orderBy . ' ' . $direction;
-        }
-        
+        }        
         return $this->pdo->query($query)->fetchAll();
     }
     
@@ -38,7 +37,7 @@ abstract class AbstractManager
         $statement = $this->pdo->prepare("SELECT * FROM " . static::TABLE . " WHERE id=:id");
         $statement->bindValue(':id', $id, \PDO::PARAM_INT);
         $statement->execute();
-
+        
         return $statement->fetch();  
     }
     
